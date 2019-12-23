@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+   <link href="https://fonts.googleapis.com/css?family=Poiret+One&display=swap" rel="stylesheet">
+    <style>
+        * {
+            border: 0;
+            padding: 0;
+            margin: 0;
+            border: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #272727;
+            font-family: 'Poiret One', cursive;
+            letter-spacing: 1px;
+        }
+
+
+
+        .chat {
+            background-color: #5d5b6a;
+            padding: 15px;
+            height: 400px;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+        }
+
+        .chat-msgs {
+
+            width: 600px;
+            margin: 50px auto;
+
+        }
+
+        .chat-msgs ul {
+            list-style: none;
+        }
+
+        .chat-msgs ul li {
+
+            margin: 5px;
+        }
+
+        .chat-msgs form input {
+            padding: 15px 15px;
+            width: 100%;
+            border-bottom-left-radius: 5px;
+            outline: none;
+        }
+
+        .chat-msgs form button {
+            padding: 10px 15px;
+            border-bottom-right-radius: 5px;
+            outline: none;
+        }
+
+        .color {
+            padding: 10px 15px;
+            background-color: white;
+            border-radius: 2px;
+            display: inline-block;
+        }
+
+        .nome {
+            font-weight: bold;
+            
+        }
+
+        .nomeoff {
+            color:orangered
+        }
+
+         .form-off {
+            display: flex;
+        }
+        .chat-info {
+            padding: 10px 25px;
+            background-color: #35477d;
+            margin: 0 25px;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="chat-msgs">
+
+            {{!-- <div class="chat-info">
+                <h2>{{usuario}}</h2>
+            </div> --}}
+
+            <div class="chat">
+                <ul>
+
+                </ul>
+
+            </div>
+            <form action="" class="form-off">
+                <input type="text" autocomplete="off" name="mensagens" id="setmensagem" placeholder="Mensagem">
+                <button type="button" id="bmensagem">Enviar</button>
+            </form>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+
+        $(function () {
+            var socket = io();
+
+            $('#bmensagem').click(function (e) {
+                e.preventDefault(); // prevents page reloading
+                console.log($('#setmensagem').val())
+                socket.emit('chat message', $('#setmensagem').val());
+                $('#setmensagem').val('');
+                return false;
+            });
+
+            socket.on('bemvindo', (mensagem) => {
+                 $('.chat ul').append(`
+                    <li>
+                        <div class="color"><span class="nome">${mensagem.usuario}</span><span class="nome"> ${mensagem.msg}</span>
+                        </div>
+                    </li>`)
+            })
+
+            socket.on('chat message', (mensagem) => {
+                $('.chat ul').append(`
+                    <li>
+                        <div class="color"><span class="nome  nomeoff">${mensagem.usuario} </span>  :  <span class="nome">${mensagem.msg}</span>
+                        </div>
+                    </li>`)
+            })
+
+        });
+
+
+    </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css?family=Exo+2&display=swap" rel="stylesheet">
+    <style>
+        * {
+            border: 0;
+            padding: 0;
+            margin: 0;
+            border: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #333366;
+            font-family: 'Exo 2', sans-serif;
+        }
+        .container {
+            width: 100%;
+            display: flex;
+            align-items: center;
+        }
+        .welcome {
+            background-color: #ff9d76;
+            padding: 25px;
+            width: 500px;
+            display: inline-block;
+            margin: 100px auto;
+            text-align: center;
+            border-radius: 10px;
+        }
+        .buttons {
+            padding: 10px;
+            width: 100%;
+            display: flex;
+            
+        }
+        .buttons button {
+            width: 100%;
+            padding: 10px 25px;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="welcome">
+            <h1>Bem Vindo: {{usuario}}</h1>
+            <div class="buttons">
+                <a href="chat"><button style="border-top-left-radius: 15px;">Chat</button></a>
+                <a href="logout"><button style="border-bottom-right-radius: 15px;">Sair</button></a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

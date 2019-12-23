@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            outline: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #5d5b6a;
+        }
+
+        .form {
+            padding: 15px;
+            background-color: #758184;
+            width: 400px;
+            margin: 150px auto;
+            border-radius: 3px;
+        }
+        .form form {
+             display: flex;
+            flex-direction: column;
+        }
+
+        .form form input, button {
+            padding: 10px 25px;
+            margin: 2px 0;
+            border-radius: 2px;
+        }
+
+        .select-avatar {
+            padding: 10px 0;
+        }
+
+        .select-avatar input {
+            width: 32px;
+            filter: grayscale(100%);
+        }
+
+        .select-avatar input:hover {
+             filter: grayscale(0);
+        }
+
+         .select-avatar input.select {
+            filter: grayscale(0);
+        }
+
+        .submits {
+            display: flex;
+        }
+
+        .erros {
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 3px;
+        }
+
+        .green {
+            background-color: teal;
+        }
+
+        .yellow {
+            background-color: goldenrod;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="form">
+        {{!-- <div class="select-avatar">
+          <input class="select" type="image" src="https://image.flaticon.com/icons/png/512/145/145848.png" alt="">
+          <input type="image" src="https://image.flaticon.com/icons/png/512/145/145845.png" alt="">
+          <input type="image" src="https://image.flaticon.com/icons/png/512/145/145847.png" alt="">
+          <input type="image" src="https://image.flaticon.com/icons/png/512/145/145842.png" alt="">
+          <input type="image" src="https://image.flaticon.com/icons/png/512/145/145844.png" alt="">
+          <input type="image" src="https://image.flaticon.com/icons/png/512/145/145846.png" alt="">
+        </div> --}}
+        <form action="cadastrar" method="post">
+        <input required type="text" placeholder="nickname" autocomplete="off" name="username">
+        <input required type="password"  placeholder="password" name="password" >
+        <input required type="email" autocomplete="off" placeholder="email" name="email" >
+        <div class="submits">
+            <button style="width: 100%; margin-right:2px" type="submit">Cadastrar</button>
+           <a href="/login"  style="width: 50%; margin-left:2px"><button style="width: 100%; background-color: #393e46; color:white" type="button">Login</button></a>
+            
+        </div>
+       
+    </form>
+     {{#if msgFlash}}
+            {{#if msgFlash.success_register}}
+                <div class="erros green">{{msgFlash.success_register}}</div>
+            {{/if}}
+
+            {{#if msgFlash.bad_register}}
+                <div class="erros yellow">{{msgFlash.bad_register}}</div>
+            {{/if}}
+
+        {{/if}}
+   
+    </div>
+</body>
+</html>
